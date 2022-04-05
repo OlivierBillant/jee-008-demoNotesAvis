@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Pool de connexion caracterisé par :
+
+ 	name="jdbc/pool_cnx" : nom qui va nous servir à recupérer notre connexion en Java avec context.lookup()
+ 	
+ 	driverClassName / type : infos de notre classe de driver
+ 	
+ 	url/username/password : infos de connexion
+ 	
+ 	maxTotal="100" : On a un pool de connxion avec au maximum 100 connexions simultannées à la base de donnée
+	maxWaitMillis="10000" : Si un utilisateur veut accéder à la base de données et que toutes les connexions sont utilisées, il attend au maximum 10s avant TIMEOUT (=> message : "Application non disponible, veuillez réessayer ultérieurement")
+	maxIdle="30" : Si jamais on a 30 connexions de notre pool qui sont "inactives", alors à la 31ème on commence à relacher des connexions à la base de donnée
+ -->
+<Context>
+	<Resource
+		name="jdbc/pool_cnx"
+		
+		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+		type="javax.sql.DataSource"
+		
+		url="jdbc:sqlserver://localhost;databasename=BDD_DEMO"
+		username="utilisateurBDD"
+		password="Pa$$w0rd"
+		
+		maxTotal="100"
+		maxIdle="30"
+		maxWaitMillis="10000"
+	/>
+</Context>
